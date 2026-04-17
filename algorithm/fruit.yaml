@@ -1,0 +1,9 @@
+path: ./datasets/fruit_freshness  # 数据集根目录
+train: images/train              # 训练集相对路径(实际路径为 path + train)
+val: images/val                  # 验证集相对路径(实际路径为 path + val)
+
+names:
+  0: tomato
+  1: strawberry
+  2: banana
+  3: apple
