@@ -71,3 +71,14 @@ Thumbs.db
 node_modules/       # 如果小程序涉及 npm
 
 venv/
+
+# 忽略所有数据集文件夹
+datasets/
+algorithm/datasets/
+    
+# 忽略所有图片和压缩包格式
+*.jpg
+*.png
+*.jpeg
+*.heic
+*.zip
