@@ -1,1 +1,1 @@
- Initialize Algorithm folder
+ Initialize algorithm folder

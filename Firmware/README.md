@@ -1,1 +1,1 @@
- Initialize Firmware folder
+ Initialize firmware folder

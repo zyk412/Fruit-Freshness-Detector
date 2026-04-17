@@ -39,3 +39,33 @@
 
 # debug information files
 *.dwo
+
+# --- Python & Machine Learning ---
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# YOLOv8 / Ultralytics 训练产物
+runs/               # 默认的训练日志、图表和权重目录
+*.pt                # PyTorch 模型权重（建议只手动 commit 最终版）
+*.onnx              # 导出的部署模型
+*.tflite            # 转换后的边缘端模型
+.ultralytics/       # Ultralytics 配置缓存
+
+# 数据集 (强烈建议不要把数千张图片传到 GitHub)
+datasets/
+data/fruit_images/  # 根据你本地文件夹名字修改
+
+# --- Embedded (ESP32 / PlatformIO) ---
+.pio/               # PlatformIO 编译产生的海量中间件 (必须忽略)
+.vscode/            # 这里的配置通常包含本地路径，不建议共享
+.gcc-flags.json
+.clang_complete
+.db_university
+
+# --- OS & IDE ---
+.DS_Store
+Thumbs.db
+*.log
+node_modules/       # 如果你们的小程序涉及 npm

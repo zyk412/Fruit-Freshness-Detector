@@ -1,1 +1,1 @@
- Initialize Miniprogram folder
+ Initialize miniprogram folder
