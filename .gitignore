@@ -70,4 +70,4 @@ Thumbs.db
 *.log
 node_modules/       # 如果小程序涉及 npm
 
-venv/             # 可能的虚拟环境目录
+venv/
