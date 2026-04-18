@@ -1,84 +1,64 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# debug information files
-*.dwo
-
-# --- Python & Machine Learning ---
+# ====================================================================
+# 1. 系统与开发环境 (禁止上传)
+# ====================================================================
+venv/
+.venv/
 __pycache__/
 *.py[cod]
 *$py.class
-.ipynb_checkpoints/
-
-# YOLOv8 / Ultralytics 训练产物
-runs/               # 默认的训练日志、图表和权重目录
-*.pt                # PyTorch 模型权重（建议只手动 commit 最终版）
-*.onnx              # 导出的部署模型
-*.tflite            # 转换后的边缘端模型
-.ultralytics/       # Ultralytics 配置缓存
-
-# 数据集 (强烈建议不要把数千张图片传到 GitHub)
-datasets/
-data/fruit_images/  # 根据你本地文件夹名字修改
-
-# --- Embedded (ESP32 / PlatformIO) ---
-.pio/               # PlatformIO 编译产生的中间件必须忽略
-.vscode/            # 此处的配置通常包含本地路径，不建议共享
-.gcc-flags.json
-.clang_complete
-.db_university
-
-# --- OS & IDE ---
 .DS_Store
 Thumbs.db
 *.log
-node_modules/       # 如果小程序涉及 npm
+.vscode/
+.idea/
 
-venv/
+# ====================================================================
+# 2. 机器学习权重与产物 (仅保留代码，不保留超大模型)
+# ====================================================================
+# 忽略所有 PyTorch 权重（建议手动给队友发 .pt 文件）
+*.pt
+*.pth
+*.onnx
+*.tflite
 
-# 忽略所有数据集文件夹
-datasets/
-algorithm/datasets/
-    
-# 忽略所有图片和压缩包格式
+# 忽略训练过程中的日志、图表和权重目录
+/algorithm/runs/
+.ultralytics/
+
+# ====================================================================
+# 3. 数据集与图像管理 (管理员核心：禁止大数据冲垮仓库)
+# ====================================================================
+# 忽略 YOLO 训练用的数据集（包含 images 和 labels 文件夹）
+/algorithm/datasets/
+/pict/
+
+# 忽略所有常见的图像和压缩包格式
 *.jpg
-*.png
 *.jpeg
+*.png
 *.heic
 *.zip
+*.rar
+*.tar.gz
+
+# ====================================================================
+# 4. 光谱数据管理 (针对队友的部分)
+# ====================================================================
+# 忽略光谱原始数据 CSV（如果数据量很大或包含隐私）
+# 如果需要保留少量示例数据，可以取消注释下面的例外规则
+*.csv
+
+# ====================================================================
+# 5. 例外规则 (确保关键配置文件不被误伤)
+# ====================================================================
+# 必须保留依赖清单，方便队友一键配环境
+!requirements.txt
+
+# 必须保留 YOLO 配置文件（这是项目的灵魂）
+!fruit.yaml
+
+# ====================================================================
+# 6. 其他模块 (硬件与小程序)
+# ====================================================================
+/firmware/.pio/
+/miniprogram/node_modules/
