@@ -13,7 +13,7 @@ def main():
     
     # 3. 拼接待测试图片的路径
     # 建议你在根目录下创建一个 test_images 文件夹放测试图，或者直接指向之前的 pict
-    img_path = os.path.join(root_path, "algorithm", "datasets", "fruit_data", "images", "val", "apple", "apple_1.jpg")
+    img_path = os.path.join(root_path, "pict", "strawberry", "strawberry (1).jpg")
 
     # 验证路径是否存在
     if not os.path.exists(model_path):
