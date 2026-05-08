@@ -9,16 +9,19 @@ INTERVAL = 5  # 拍照间隔（秒）
 
 # 路径配置：指向根目录下的 data/raw
 # 因为脚本在 firmware 文件夹内，所以用 .. 飞到上一层，再进入 data/raw
-SAVE_DIR = os.path.join("..", "data", "raw")
+current_file_path = os.path.abspath(__file__) # firmware/auto_capture2.py
+firmware_dir = os.path.dirname(current_file_path)
+project_root = os.path.dirname(firmware_dir)
+SAVE_DIR = os.path.join(project_root, "data", "raw")
 
 def take_photo():
     # 自动创建数据保存目录（如果不存在的话）
     if not os.path.exists(SAVE_DIR):
         try:
             os.makedirs(SAVE_DIR)
-            print(f"📁 已创建数据目录: {SAVE_DIR}")
+            print(f"已创建数据目录: {SAVE_DIR}")
         except Exception as e:
-            print(f"❌ 创建目录失败: {e}")
+            print(f"创建目录失败: {e}")
             return False
 
     try:
