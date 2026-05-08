@@ -2,9 +2,9 @@ import serial
 import time
 import csv
 
-SERIAL_PORT = 'COM4'
+SERIAL_PORT = 'COM6'
 BAUD_RATE = 115200
-OUTPUT_FILE = '../algorithm/spectrum_analysis/spectrum_data1.csv'
+OUTPUT_FILE = 'spectral.csv'
 
 print("Connecting to", SERIAL_PORT)
 ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
