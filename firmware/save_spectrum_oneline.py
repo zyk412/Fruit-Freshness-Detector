@@ -4,7 +4,7 @@ import csv
 
 SERIAL_PORT = 'COM4'
 BAUD_RATE = 115200
-OUTPUT_FILE = '../spectrum_analysis/spectrum_data2.csv'
+OUTPUT_FILE = '../algorithm/spectrum_analysis/spectrum_data1.csv'
 
 print("Connecting to", SERIAL_PORT)
 ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
