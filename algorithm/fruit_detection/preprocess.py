@@ -11,14 +11,13 @@ class ImageProcessor:
 
     def get_latest_image(self, folder_path="../../data/raw"):
         """
-        自动获取文件夹下最新产生的一张图片路径
+        自动获取最新产生的一张图片路径（测试用）
         """
-        # 获取所有 .jpg 文件
-        search_path = os.path.join(folder_path, "*.jpg")
-        files = glob.glob(search_path)
+        search_path = os.path.join(folder_path, "**", "*.jpg")
+        search_path = search_path.replace("\\", "/")
+        files = glob.glob(search_path, recursive=True)
         if not files:
             return None
-        # 按修改时间排序，取最后一张
         latest_file = max(files, key=os.path.getmtime)
         return latest_file
 
@@ -26,7 +25,6 @@ class ImageProcessor:
         """
         执行预处理逻辑：中值滤波 + CLAHE
         """
-        # 读取图片
         frame = cv2.imread(image_path)
         if frame is None:
             print(f"❌ 无法读取图片: {image_path}")
@@ -44,20 +42,42 @@ class ImageProcessor:
 
         return final_img
 
-# --- 调试用测试逻辑 ---
+    def process_all_images(self, folder_path):
+        """
+        🔥🔥🔥 新增：批量处理文件夹下的所有水果照片
+        """
+        search_path = os.path.join(folder_path, "**", "*.jpg")
+        search_path = search_path.replace("\\", "/")
+        files = glob.glob(search_path, recursive=True)
+        
+        # 过滤掉已经处理过的图片（防止二次处理冲突）
+        files = [f for f in files if "processed_" not in os.path.basename(f)]
+        
+        total_files = len(files)
+        print(f"📦 找到待处理的原始图片共: {total_files} 张")
+        
+        count = 0
+        for img_path in files:
+            result = self.process(img_path)
+            if result is not None:
+                # 直接覆盖原图，或者保存为 processed_ 开头的文件
+                # 为了后续 organize_data.py 和训练集不容易出错，这里直接【覆盖原图】是最省心的
+                # 如果你想保留原图，可以改成：output_path = os.path.join(dir_name, "processed_" + file_name)
+                cv2.imwrite(img_path, result)
+                count += 1
+                if count % 50 == 0 or count == total_files:
+                    print(f"⏳ 进度: [{count}/{total_files}] 张图片预处理完成...")
+                    
+        print(f"🎉 批量预处理大功告成！成功处理 {count} 张图片。")
+
+# --- 运行批量处理 ---
 if __name__ == "__main__":
     processor = ImageProcessor()
     
-    # 自动获取最新照片的名称
-    raw_folder = "../../data/raw" # 注意这里是相对路径
-    img_path = processor.get_latest_image(raw_folder)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    raw_folder = os.path.normpath(os.path.join(current_dir, "../../data/raw"))
     
-    if img_path:
-        print(f"正在处理最新图片: {img_path}")
-        result = processor.process(img_path)
-        
-        # 保存或展示
-        cv2.imshow("Original vs Processed", result)
-        cv2.waitKey(0)
-    else:
-        print("文件夹内暂时没有图片。")
+    print(f"📂 正在扫描的数据根目录: {raw_folder}")
+    
+    # ⬇️ 调用批量处理函数
+    processor.process_all_images(raw_folder)
