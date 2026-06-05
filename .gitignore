@@ -30,6 +30,7 @@ Thumbs.db
 # ====================================================================
 # 忽略 YOLO 训练用的数据集（包含 images 和 labels 文件夹）
 /algorithm/datasets/
+/algorithm/datasets - 副本/
 /pict/
 
 # 忽略所有常见的文档、图像和压缩包格式
