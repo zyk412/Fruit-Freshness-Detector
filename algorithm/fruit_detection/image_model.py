@@ -9,12 +9,12 @@ class ImageClassifier:
         # 向上退两级到 algorithm，再退一级到根目录
         # 这里建议用 .parent 的逻辑更直观
         project_root = os.path.dirname(os.path.dirname(current_dir))
-        model_path = os.path.join(project_root, 'runs', 'fruit_cls_v2', 'weights', 'best.pt')
+        model_path = os.path.join(project_root, 'runs', 'fruit_cls_final_v2', 'weights', 'best.pt')
         
         # 2. 加载 YOLOv8 分类模型
         if not os.path.exists(model_path):
             # 防御性：如果动态路径错了，尝试根目录下的直接路径
-            model_path = os.path.join(os.getcwd(), 'runs', 'fruit_cls_v2', 'weights', 'best.pt')
+            model_path = os.path.join(os.getcwd(), 'runs', 'fruit_cls_final_v2', 'weights', 'best.pt')
             
         if not os.path.exists(model_path):
             raise FileNotFoundError(f"找不到权重文件: {model_path}")
