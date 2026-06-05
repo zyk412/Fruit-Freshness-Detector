@@ -68,3 +68,6 @@ docs_local/
 
 # 永久忽略 fruit_detection 目录下的所有带 test 的脚本
 algorithm/fruit_detection/*test*
+
+# 永久忽略最终答辩交付物及本地说明文档文件夹（包含源码备份、可执行码及报告）
+/delivery/
