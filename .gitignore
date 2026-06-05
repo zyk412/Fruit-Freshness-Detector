@@ -64,3 +64,6 @@ Thumbs.db
 # --- 个人文档与非公开资料 ---
 # 屏蔽名为 "docs_local" 的整个文件夹（推荐：所有不想上传的文档都扔进去）
 docs_local/
+
+# 永久忽略 fruit_detection 目录下的所有带 test 的脚本
+algorithm/fruit_detection/*test*
