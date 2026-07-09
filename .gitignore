@@ -32,6 +32,7 @@ Thumbs.db
 /algorithm/datasets/
 /algorithm/datasets - 副本/
 /pict/
+/data/
 
 # 忽略所有常见的文档、图像和压缩包格式
 *.jpg
